@@ -1,24 +1,33 @@
-﻿using System;
+using System;
 
-namespace Uppgift_6._8
+namespace Uppgift6_8
 {
     class Program
     {
         static void Main()
         {
-            Console.WriteLine(AntalTalIText("5 4,1 hej 9,04"));
+            Console.WriteLine("Skriv ett heltal:");
+            int tal = int.Parse(Console.ReadLine());
+            Console.WriteLine("Antal primtal mindre än " + tal + ": " + AntalPrimtalMindreÄn(tal));
         }
 
-        static int AntalTalIText(string text)
+        static int AntalPrimtalMindreÄn(int gräns)
         {
-            string[] delar = text.Split(' ');
             int antal = 0;
-
-            foreach (string d in delar)
-                if (double.TryParse(d, out _))
+            for (int i = 2; i < gräns; i++)
+                if (ÄrPrimtal(i))
                     antal++;
-
             return antal;
+        }
+
+        static bool ÄrPrimtal(int tal)
+        {
+            if (tal < 2) return false;
+            for (int i = 2; i < tal; i++)
+                if (tal % i == 0)
+                    return false;
+            return true;
         }
     }
 }
+
